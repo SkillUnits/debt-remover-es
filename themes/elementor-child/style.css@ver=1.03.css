@@ -1,0 +1,12 @@
+/**
+ * Theme Name:   Customer Bullseye
+ * Template:     hello-elementor
+ * Version:      1.0.0
+ */
+
+#site-footer {
+	display: none;
+}
+.elementor-button span{
+    pointer-events: none;
+}
