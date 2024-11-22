@@ -569,7 +569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</div>
 </div>
 
-<script>
+<!-- <script>
 const results = {};
 	window.addEventListener("DOMContentLoaded", function () {
 		const barToFill = document.querySelector(".bar-fill");
@@ -694,6 +694,114 @@ const results = {};
 		}, 30 * 1000);
 	});
 </script>
+ -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const results = {};
+      let noCount = 0; 
+  
+      const barToFill = document.querySelector(".bar-fill");
+      const boxMove = document.querySelectorAll(".move");
+      const backBtn = document.querySelector(".go-back-btn");
+      const hideOnThank = document.querySelector(".hide-on-thank");
+  
+      const mainContent = document.querySelector("body"); 
+
+      let count = 1;
+  
+      
+      function barIncrement() {
+        count++;
+        barToFill.style.width = `${count * 16.67}%`; 
+      }
+
+      const popup = document.createElement("div");
+      popup.id = "eligibility-popup";
+      popup.style.position = "fixed";
+      popup.style.top = "50%";
+      popup.style.left = "50%";
+      popup.style.transform = "translate(-50%, -50%)";
+      popup.style.backgroundColor = "#fff";
+      popup.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+      popup.style.padding = "20px";
+      popup.style.borderRadius = "8px";
+      popup.style.textAlign = "center";
+      popup.style.zIndex = "1000";
+      popup.style.display = "none"; // Скрываем по умолчанию
+  
+      popup.innerHTML = `
+        <h2>Unfortunately, you are not eligible.</h2>
+        <p>Based on your answers, you do not qualify for this program.</p>
+        <button id="close-popup" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+      `;
+  
+      document.body.appendChild(popup);
+  
+      document.getElementById("close-popup").addEventListener("click", function () {
+        popup.style.display = "none";
+        mainContent.classList.remove("blurred"); 
+        document.body.style.overflow = ""; 
+        location.reload(); 
+      });
+  
+      const next = (box) => {
+        box.classList.add("hide");
+        box.nextElementSibling.classList.remove("hide");
+        if (box.nextElementSibling.classList.contains("auto")) {
+          hideOnThank.classList.add("hide");
+          setTimeout(next, 1000, box.nextElementSibling);
+        }
+      };
+  
+      boxMove.forEach((box) => {
+        if (!box.classList.contains("box")) {
+          const boxBtn = box.querySelectorAll(".btn button");
+  
+          boxBtn.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const answer = btn.textContent.trim().toLowerCase(); 
+  
+              if (answer === "no") {
+                noCount++;
+              }
+  
+              if (noCount === 2) {
+                popup.style.display = "block";
+                mainContent.classList.add("blurred"); 
+                document.body.style.overflow = "hidden"; 
+                return; 
+              }
+  
+              results[box.dataset.step] = btn.textContent
+                .replace(/\s/g, "")
+                .replace(/,/g, "");
+  
+              barIncrement();
+  
+              next(box);
+            });
+          });
+        }
+      });
+    });
+</script>
+
+<style>
+	#eligibility-popup {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 8px;
+		border: 2px solid #003b71;
+		z-index: 1001 !important;
+		box-shadow: 0 0 0 2000px rgba(255, 255, 255, 0.933)!important; 
+ 	}
+
+</style>
 
 <script src="https://b-js.ringba.com/CA3de14ddf1534406daa19801e04408eb3"></script>
 		</div>
