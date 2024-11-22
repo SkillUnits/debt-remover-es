@@ -696,7 +696,7 @@ const results = {};
 </script>
  -->
 
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
       const results = {};
       let noCount = 0; 
@@ -784,6 +784,97 @@ const results = {};
           });
         }
       });
+    });
+</script> -->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const results = {};
+        let noCount = 0;
+
+        const barToFill = document.querySelector(".bar-fill");
+        const boxMove = document.querySelectorAll(".move");
+        const backBtn = document.querySelector(".go-back-btn");
+        const hideOnThank = document.querySelector(".hide-on-thank");
+
+        const mainContent = document.querySelector("body"); 
+
+        let count = 1;
+
+        function barIncrement() {
+            count++;
+            barToFill.style.width = `${count * 16.67}%`; 
+        }
+
+        const popup = document.createElement("div");
+        popup.id = "eligibility-popup";
+        popup.style.position = "fixed";
+        popup.style.top = "50%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, -50%)";
+        popup.style.backgroundColor = "#fff";
+        popup.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+        popup.style.padding = "20px";
+        popup.style.borderRadius = "8px";
+        popup.style.textAlign = "center";
+        popup.style.zIndex = "1000";
+        popup.style.display = "none"; // Скрываем по умолчанию
+
+        popup.innerHTML = `
+            <h2>Unfortunately</h2>
+            <p>You are not approved for the debt giveback program</p>
+            <button id="close-popup" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        `;
+
+        document.body.appendChild(popup);
+
+        document.getElementById("close-popup").addEventListener("click", function () {
+            popup.style.display = "none";
+            mainContent.classList.remove("blurred"); 
+            document.body.style.overflow = ""; 
+            location.reload(); 
+        });
+
+        const next = (box) => {
+            box.classList.add("hide");
+            box.nextElementSibling.classList.remove("hide");
+            if (box.nextElementSibling.classList.contains("auto")) {
+                hideOnThank.classList.add("hide");
+                setTimeout(next, 1000, box.nextElementSibling);
+            }
+        };
+
+        boxMove.forEach((box) => {
+            if (!box.classList.contains("box")) {
+                const boxBtn = box.querySelectorAll(".btn button");
+
+                boxBtn.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const answer = btn.textContent.trim().toLowerCase(); 
+
+                        if (answer === "no") {
+                            noCount++;
+                        }
+
+                        if (noCount >= 1) {
+                            popup.style.display = "block";
+                            mainContent.classList.add("blurred"); 
+                            document.body.style.overflow = "hidden"; 
+                            return; 
+                        }
+
+                        results[box.dataset.step] = btn.textContent
+                            .replace(/\s/g, "")
+                            .replace(/,/g, "");
+
+                        barIncrement();
+
+                        next(box);
+                    });
+                });
+            }
+        });
     });
 </script>
 
