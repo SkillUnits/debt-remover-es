@@ -1519,42 +1519,32 @@ const results = {};
 
 <style>
     /* Стили для баннера cookies */
-    #cookie-banner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(53, 54, 61, 0.9);
-        color: #fff;
-        padding: 10px;
-        font-size: 12px;
-        z-index: 1000;
-        display: none; /* Скрываем баннер по умолчанию */
-        text-align: center;
-    }
-    #cookie-banner span {
-        display: block;
-        margin-bottom: 10px;
-    }
-    #cookie-banner a {
-        color: #00a99d;
-        text-decoration: underline;
-        font-size: 12px;
-    }
-    #cookie-banner button {
-        margin: 5px;
-        padding: 5px 15px;
-        background: #00a99d;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 12px;
-        display: inline-block;
-    }
-    #cookie-banner button:hover {
-        background: #007f76;
-    }
+	#cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(53, 54, 61, 0.9);
+            color: #fff;
+            padding: 15px;
+            z-index: 1000;
+			font-size: 8pt;
+            display: none; /* Скрываем баннер по умолчанию */
+        }
+        #cookie-banner a {
+            color: #00a99d;
+            text-decoration: underline;
+        }
+        #cookie-banner button {
+            margin-left: 10px;
+            padding: 4px 6px;
+            background: #00a99d;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+			font-size: 8pt;
+            border-radius: 3px;
+        }
 </style>
 
 <!-- Политика cookies -->
