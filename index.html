@@ -1517,7 +1517,7 @@ const results = {};
 							}
 						</style>
 
-				<style>
+<style>
     /* Стили для баннера cookies */
     #cookie-banner {
         position: fixed;
@@ -1530,6 +1530,11 @@ const results = {};
         font-size: 12px;
         z-index: 1000;
         display: none; /* Скрываем баннер по умолчанию */
+        text-align: center;
+    }
+    #cookie-banner span {
+        display: block;
+        margin-bottom: 10px;
     }
     #cookie-banner a {
         color: #00a99d;
@@ -1537,14 +1542,15 @@ const results = {};
         font-size: 12px;
     }
     #cookie-banner button {
-        margin-left: 10px;
-        padding: 5px 10px;
+        margin: 5px;
+        padding: 5px 15px;
         background: #00a99d;
         border: none;
         color: #fff;
         cursor: pointer;
         border-radius: 5px;
         font-size: 12px;
+        display: inline-block;
     }
     #cookie-banner button:hover {
         background: #007f76;
