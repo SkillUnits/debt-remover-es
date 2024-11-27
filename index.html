@@ -1517,6 +1517,82 @@ const results = {};
 							}
 						</style>
 
+<style>
+    /* Стили для баннера cookies */
+    #cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(53, 54, 61, 0.9);
+        color: #fff;
+        padding: 10px;
+        font-size: 12px;
+        z-index: 1000;
+        display: none; /* Скрываем баннер по умолчанию */
+        text-align: center;
+    }
+    #cookie-banner span {
+        display: block;
+        margin-bottom: 10px;
+    }
+    #cookie-banner a {
+        color: #00a99d;
+        text-decoration: underline;
+        font-size: 12px;
+    }
+    #cookie-banner button {
+        margin: 5px;
+        padding: 5px 15px;
+        background: #00a99d;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+        display: inline-block;
+    }
+    #cookie-banner button:hover {
+        background: #007f76;
+    }
+</style>
+
+<!-- Политика cookies -->
+<div id="cookie-banner">
+    <span>Utilizamos cookies para analizar el tráfico de nuestro sitio web y para apoyar funciones técnicas que mejoran su experiencia de usuario. Lea nuestras <a href="/privacy-policy" title="Privacy Policy">Políticas de Privacidad</a> y <a href="/cookies-policy" title="Cookie Policy">Políticas de Cookies</a> para obtener más información.</span>
+        <button id="accept-cookies">Aceptar cookies</button>
+        <button id="decline-cookies">Rechazar cookies</button>
+</div>
+
+<script>
+    // Функции для управления cookies
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+    }
+
+    function getCookie(name) {
+        return document.cookie.split('; ').find(row => row.startsWith(name + '='))?.split('=')[1];
+    }
+
+    // Показываем баннер, если cookie-решение еще не принято
+    const cookieBanner = document.getElementById('cookie-banner');
+    if (!getCookie('userConsent')) {
+        cookieBanner.style.display = 'block';
+    }
+
+    // Обработчики событий для кнопок
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+        setCookie('userConsent', 'accepted', 30);
+        cookieBanner.style.display = 'none';
+    });
+
+    document.getElementById('decline-cookies').addEventListener('click', () => {
+        setCookie('userConsent', 'declined', 30);
+        cookieBanner.style.display = 'none';
+    });
+</script>
+
 
 						<script src="https://b-js.ringba.com/CA3de14ddf1534406daa19801e04408eb3"></script>
 					</div>
@@ -1874,7 +1950,7 @@ const results = {};
 								data-id="368702a3" data-element_type="widget"
 								data-widget_type="theme-site-logo.default">
 								<div class="elementor-widget-container">
-									<a href="#">
+									<a href="https://usdebts-relief.com/">
 										<img width="74" height="27" src="uploads/2024/04/us-debt-freedom.svg"
 											class="attachment-full size-full wp-image-719" alt="" /> </a>
 								</div>
@@ -1939,13 +2015,13 @@ Por favor, contacte a un profesional en impuestos para discutir las consecuencia
 					<div class="elementor-widget-container">
 						<ul class="elementor-icon-list-items elementor-inline-items">
 							<li class="elementor-icon-list-item elementor-inline-item">
-								<a href="https://www.usfinancerelief.org/privacy-policy/">
+								<a href="privacy-policy/index.html">
 
 									<span class="elementor-icon-list-text">Política de Privacidad</span>
 								</a>
 							</li>
 							<li class="elementor-icon-list-item elementor-inline-item">
-								<a href="https://www.usfinancerelief.org/terms-of-service/">
+								<a href="terms-of-service/index.html">
 
 									<span class="elementor-icon-list-text">Términos de Servicio</span>
 								</a>
