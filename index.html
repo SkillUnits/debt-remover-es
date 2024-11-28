@@ -17,7 +17,7 @@
 		var newsbreak_cid = url.searchParams.get("newsbreak_cid");
 
 		mcc('init', { site: 695, serviceBaseUrl: '//www.marketcall.com' });
-		mcc('requestTrackingNumber', {campaign:"309905",selector:[{type:"dom",value:"a[href^='tel:']"}],mask:"+x (xxx) xxx-xx-xx",subid:"{subid}",subid1:"{tc_id}",subid2:newsbreak_cid});
+		mcc('requestTrackingNumber', {campaign:"309905",selector:[{type:"dom",value:"a[href^='tel:']"}],mask:"(xxx) xxx-xx-xx",subid:"{subid}",subid1:"{tc_id}",subid2:newsbreak_cid});
 
 		</script>
 		<!-- Phone calls validation code -->
@@ -1554,11 +1554,11 @@ const results = {};
 </style>
 
 <!-- Политика cookies -->
-<div id="cookie-banner">
+<!-- <div id="cookie-banner">
     <span>Utilizamos cookies para analizar el tráfico de nuestro sitio web y para apoyar funciones técnicas que mejoran su experiencia de usuario. Lea nuestras <a href="/privacy-policy" title="Privacy Policy">Políticas de Privacidad</a> y <a href="/cookies-policy" title="Cookie Policy">Políticas de Cookies</a> para obtener más información.</span>
         <button id="accept-cookies">Aceptar cookies</button>
         <button id="decline-cookies">Rechazar cookies</button>
-</div>
+</div> -->
 
 <script>
     // Функции для управления cookies
